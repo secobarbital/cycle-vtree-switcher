@@ -43,7 +43,6 @@ router('/')
 ```js
 import { run, Rx } from '@cycle/core'
 import { makeDOMDriver } from '@cycle/dom'
-import { makeFetchDriver } from ‘@cycle/fetch’
 import { makePushStateDriver } from 'cycle-pushstate-driver'
 import vtreeSwitcher from 'cycle-vtree-switcher'
 
@@ -60,7 +59,7 @@ const routes = {
 }
 
 function main (responses) {
-  const { DOM, Fetch, Path } = responses
+  const { DOM, Path } = responses
 
   const [vtree$, requestMap] = vtreeSwitcher(routes, responses)
 
@@ -75,3 +74,7 @@ run(main, {
   Path: makePushStateDriver()
 })
 ```
+
+## Full Example
+
+[iouo.me](https://github.com/secobarbital/iouo.me/blob/ba6608179a7bc69e81c378b2639014de7f9c1f26/src/index.js)
