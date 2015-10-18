@@ -14,8 +14,8 @@ npm install cycle-vtree-switcher
 
 Input:
 
- * ```routes```: an object mapping from ```routington``` route definitions to route handlers which are functions like Cycle.js main functions: ```main(responses: Object) -> requests: Object```
- * ```responses```: an object containing Cycle.js driver responses/sources. Must include a ```Path``` response, which can be built using [```cycle-pushstate-driver```](https://github.com/secobarbital/cycle-pushstate-driver)
+ * ```routes```: an object mapping from [routington](https://github.com/pillarjs/routington) route definitions to route handlers which are functions like Cycle.js main functions: ```main(responses: Object) -> requests: Object```. ```cycle-vtree-switcher``` uses [cycle-route](https://github.com/secobarbital/cycle-route) under the hood so it also supports ```*``` as the default route.
+ * ```responses```: an object containing Cycle.js driver responses/sources. Must include a ```Path``` response, which can be built using [cycle-pushstate-driver](https://github.com/secobarbital/cycle-pushstate-driver).
 
 Output:
 
@@ -23,20 +23,6 @@ Output:
  * ```requests```: an object containing Cycle.js driver requests/sinks, which you can combine to return to the drivers
 
 ## Usage
-
-Basics:
-
-```js
-import { makeRouter } from 'cycle-route'
-
-const router = makeRouter({
-  '/': 'home',
-  '/foo/:bar': 'foo',
-  '*': 'notfound'          // default route
-})
-
-router('/')
-```
 
 [Cycle.js](http://cycle.js.org/) use case:
 
