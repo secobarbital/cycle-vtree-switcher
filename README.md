@@ -22,6 +22,10 @@ Output:
  * ```vtree$```: an Observable of vtrees that is the result of switching among the vtree outputs of the route handlers according to the current path
  * ```requests```: an object containing Cycle.js driver requests/sinks, which you can combine to return to the drivers
 
+## Gotchas
+
+ * ```Rx.Observable.combineLatest``` is used to combine the route and route handlers, and it will only emit when every source has emitted, so make sure to have each route handler emit a starting vtree. This could be a loading page.
+
 ## Usage
 
 [Cycle.js](http://cycle.js.org/) use case:
