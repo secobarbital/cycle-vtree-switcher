@@ -1,0 +1,24 @@
+{
+  "name": "foobar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run watch",
+    "browserify": "browserify -t babelify index.js -o bundle.js",
+    "watch": "watchify -t babelify index.js -o bundle.js -d -v --poll"
+  },
+  "author": "Seggy Umboh",
+  "license": "MIT",
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "browserify": "^11.2.0",
+    "watchify": "^3.4.0"
+  },
+  "dependencies": {
+    "@cycle/core": "^4.0.0",
+    "@cycle/dom": "^6.0.0",
+    "cycle-hashchange-driver": "^4.0.0"
+  }
+}
