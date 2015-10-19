@@ -28,43 +28,8 @@ Output:
 
 ## Usage
 
-[Cycle.js](http://cycle.js.org/) use case:
+Check out [the example](https://github.com/secobarbital/cycle-vtree-switcher/blob/master/examples/foobar/index.js).
 
-```js
-import { run, Rx } from '@cycle/core'
-import { makeDOMDriver } from '@cycle/dom'
-import { makePushStateDriver } from 'cycle-pushstate-driver'
-import vtreeSwitcher from 'cycle-vtree-switcher'
-
-import owers from './owers'
-import owees from './owees'
-import transactions from './transactions'
-import notfound from './notfound'
-
-const routes = {
-  '/': owers,
-  '/owers/:ower': owees,
-  '/transactions/:ower/:owee': transactions,
-  '*': notfound
-}
-
-function main (responses) {
-  const { DOM, Path } = responses
-
-  const [vtree$, requestMap] = vtreeSwitcher(routes, responses)
-
-  return {
-    DOM: vtree$,
-    Path: navigate$
-  }
-}
-
-run(main, {
-  DOM: makeDOMDriver('main'),
-  Path: makePushStateDriver()
-})
-```
-
-## Full Example
+## Real World Example
 
 [iouo.me](https://github.com/secobarbital/iouo.me/blob/ba6608179a7bc69e81c378b2639014de7f9c1f26/src/index.js)
