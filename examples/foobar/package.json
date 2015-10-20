@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run watch",
-    "browserify": "browserify -t babelify index.js -o bundle.js",
+    "browserify": "browserify -t babelify -g uglifyify index.js -o bundle.js",
     "watch": "watchify -t babelify index.js -o bundle.js -d -v --poll"
   },
   "author": "Seggy Umboh",
@@ -14,11 +14,13 @@
   "devDependencies": {
     "babelify": "^6.3.0",
     "browserify": "^11.2.0",
+    "uglifyify": "^3.0.1",
     "watchify": "^3.4.0"
   },
   "dependencies": {
-    "@cycle/core": "^4.0.0",
-    "@cycle/dom": "^6.0.0",
-    "cycle-hashchange-driver": "^4.0.0"
+    "@cycle/core": "^5.0.0",
+    "@cycle/dom": "^7.0.0",
+    "cycle-hashchange-driver": "^5.0.0",
+    "rx": "^4.0.6"
   }
 }

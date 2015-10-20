@@ -1,4 +1,4 @@
-import { run, Rx } from '@cycle/core'
+import { run } from '@cycle/core'
 import { makeDOMDriver } from '@cycle/dom'
 import { makeHashChangeDriver } from 'cycle-hashchange-driver'
 import vtreeSwitcher from '../../src'

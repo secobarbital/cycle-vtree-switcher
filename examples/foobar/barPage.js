@@ -1,6 +1,5 @@
 /** @jsx hJSX */
 
-import { Rx } from '@cycle/core'
 import { hJSX } from '@cycle/dom'
 
 export default function barPage ({ Route }) {
