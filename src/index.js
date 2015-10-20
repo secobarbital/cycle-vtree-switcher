@@ -1,4 +1,4 @@
-import { Rx } from '@cycle/core'
+import Rx from 'rx'
 import { makeRouter } from 'cycle-route'
 
 export default function vtreeSwitcher (routes, responses) {
