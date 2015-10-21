@@ -2,9 +2,10 @@
 
 import { hJSX } from '@cycle/dom'
 
-export default function barPage ({ Route }) {
+export default function barPage ({ route: route$ }) {
   return {
-    DOM: Route
+    DOM: route$
+      .filter(route => route.name === 'barPage')
       .map(route => (
         <section>
           <h1>Bar Page: {route.params.id}</h1>
@@ -12,10 +13,5 @@ export default function barPage ({ Route }) {
           <p><a href="#">home</a></p>
         </section>
       ))
-      .startWith(
-        <section>
-          <h1>Bar Page: Loading...</h1>
-        </section>
-      )
   }
 }

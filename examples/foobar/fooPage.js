@@ -2,10 +2,9 @@
 
 import { hJSX } from '@cycle/dom'
 
-export default function fooPage ({ Route }) {
+export default function fooPage ({ route: route$ }) {
   return {
-    DOM: Route
-      .do(console.log.bind(console, 'Route'))
+    DOM: route$
       .filter(route => route.name === 'fooPage')
       .map(route => (
         <section>
@@ -14,10 +13,5 @@ export default function fooPage ({ Route }) {
           <p><a href="#">home</a></p>
         </section>
       ))
-      .startWith(
-        <section>
-          <h1>Foo Page: Loading...</h1>
-        </section>
-      )
   }
 }

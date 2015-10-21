@@ -6,13 +6,10 @@ import vtreeSwitcher from '../../src'
 import routes from './routes'
 
 function main (responses) {
-  const [vtree$, requestMap] = vtreeSwitcher(routes, responses)
-  return {
-    DOM: vtree$
-  }
+  return vtreeSwitcher(routes, responses.path, responses)
 }
 
 run(main, {
   DOM: makeDOMDriver('main'),
-  Path: makeHashChangeDriver()
+  path: makeHashChangeDriver()
 })
