@@ -20,7 +20,8 @@ Input:
 
 Output:
 
- * ```requests```: an object containing Cycle.js driver requests/sinks, which you can combine to return to the drivers. This includes, under the key specified by ```domDriver```, an Observable of vtrees that is the result of switching among the vtree outputs of the route handlers according to the current path.
+ * ```vtree$```: an Observable of vtrees that is the result of switching among the vtree outputs of the route handlers according to the current path
+ * ```requests```: an object containing Cycle.js driver requests/sinks, which you can combine to return to the drivers
 
 
 ## Gotchas
