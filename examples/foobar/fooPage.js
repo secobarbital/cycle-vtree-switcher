@@ -2,10 +2,9 @@
 
 import { hJSX } from '@cycle/dom'
 
-export default function fooPage ({ Route }) {
+export default function fooPage (route$) {
   return {
-    DOM: Route
-      .do(console.log.bind(console, 'Route'))
+    dom: route$
       .filter(route => route.name === 'fooPage')
       .map(route => (
         <section>

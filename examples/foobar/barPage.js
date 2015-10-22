@@ -2,9 +2,9 @@
 
 import { hJSX } from '@cycle/dom'
 
-export default function barPage ({ Route }) {
+export default function barPage (route$) {
   return {
-    DOM: Route
+    dom: route$
       .map(route => (
         <section>
           <h1>Bar Page: {route.params.id}</h1>

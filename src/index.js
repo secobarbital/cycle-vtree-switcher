@@ -1,7 +1,11 @@
 import Rx from 'rx'
 import { makeRouter } from 'cycle-route'
 
-export default function vtreeSwitcher (routes, responses) {
+export default function vtreeSwitcher (
+  routes, responses, { pathDriver = 'path', domDriver = 'dom' } = {}
+) {
+  const path$ = responses[pathDriver]
+
   const routeHandlers = Object.keys(routes).reduce((m, route) => {
     const handler = routes[route]
     m[handler.name] = handler
@@ -20,18 +24,17 @@ export default function vtreeSwitcher (routes, responses) {
   }, {})
 
   const matchRoute = makeRouter(routeNames)
-  const Route = responses.Path.map(matchRoute)
+  const route$ = path$.map(matchRoute)
 
-  const responsesWithRoute = { ...responses, Route }
   const requests = names.reduce((m, name) => {
     const handler = routeHandlers[name]
-    m[name] = handler(responsesWithRoute)
+    m[name] = handler(route$, responses)
     return m
   }, {})
 
-  const vtree$s = names.map(name => requests[name].DOM)
+  const vtree$s = names.map(name => requests[name][domDriver])
   const vtree$ = Rx.Observable.combineLatest(
-    Route, ...vtree$s,
+    route$, ...vtree$s,
     (route, ...vtrees) => vtrees[nameIdx[route.name]]
   )
 
