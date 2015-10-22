@@ -6,31 +6,23 @@ export default function vtreeSwitcher (
 ) {
   const path$ = responses[pathDriver]
 
-  const routeHandlers = Object.keys(routes).reduce((m, route) => {
+  // { rule: handler } => { rule: name }, { name: handler }
+  const [ routeHandlers, routeNames ] = Object.keys(routes).reduce(([ routeHandlers, routeNames ], route) => {
     const handler = routes[route]
-    m[handler.name] = handler
-    return m
-  }, {})
-  const routeNames = Object.keys(routes).reduce((m, route) => {
-    const handler = routes[route]
-    m[route] = handler.name
-    return m
-  }, {})
-
-  const names = Object.keys(routeHandlers)
-  const nameIdx = names.reduce((m, name, i) => {
-    m[name] = i
-    return m
-  }, {})
+    routeHandlers[handler.name] = handler
+    routeNames[route] = handler.name
+    return [ routeHandlers, routeNames ]
+  }, [ {}, {} ])
 
   const matchRoute = makeRouter(routeNames)
   const route$ = path$.map(matchRoute)
 
-  const requests = names.reduce((m, name) => {
-    const handler = routeHandlers[name]
-    m[name] = handler(route$, responses)
-    return m
-  }, {})
+  const names = Object.keys(routeHandlers)
+  const [ nameIdx, requests ] = names.reduce(([ nameIdx, requests ], name, i) => {
+    nameIdx[name] = i
+    requests[name] = routeHandlers[name](route$, responses)
+    return [ nameIdx, requests ]
+  }, [ {}, {} ])
 
   const vtree$s = names.map(name => requests[name][domDriver])
   const vtree$ = Rx.Observable.combineLatest(
