@@ -1,15 +1,18 @@
 /** @jsx hJSX */
 
-import Rx from 'rx'
 import { hJSX } from '@cycle/dom'
 
-export default function noPage () {
-  return {
-    dom: Rx.Observable.just(
+export default function noPage (route$) {
+  const vtree$ = route$
+    .filter(route => route.name === 'noPage')
+    .map(route => (
       <section>
         <h1>Not Found</h1>
         <p><a href="#">home</a></p>
       </section>
-    )
+    ))
+
+  return {
+    dom: vtree$
   }
 }
